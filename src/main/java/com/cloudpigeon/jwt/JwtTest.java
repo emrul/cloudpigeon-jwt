@@ -1,13 +1,10 @@
 package com.cloudpigeon.jwt;
 
-import com.cloudpigeon.commons.util.Base64;
-import com.cloudpigeon.commons.util.Base64Groovy;
-import com.cloudpigeon.jwt.JWT;
 import com.cloudpigeon.jwt.domain.IJsonWebToken;
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.JWSVerifier;
 import com.nimbusds.jose.crypto.MACVerifier;
-import com.nimbusds.jwt.ReadOnlyJWTClaimsSet;
+import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import org.openjdk.jmh.annotations.*;
 
@@ -15,7 +12,6 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
-import java.util.Random;
 
 /**
  * Created by emrul on 27/09/2014.
@@ -32,7 +28,7 @@ public class JwtTest
     @Setup
 	public void setUp() throws Exception
 	{
-        sharedSecret = "tokenkey".getBytes();
+        sharedSecret = "tokenkeytokenkeytokenkeytokenkey".getBytes();
         jwt = JWT.getInstance();
 	}
 
@@ -43,9 +39,9 @@ public class JwtTest
 
 
     @Benchmark
-    public void measureCpJwtParse() throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+    public void measureCpJwtParse() throws InvalidKeyException, NoSuchAlgorithmException, IOException, CloneNotSupportedException, Exception {
         //JWT jwt = new JWT();
-        IJsonWebToken token = jwt.parseToken("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUmlkIjoiIzU6MyIsImV4cCI6MTQxMDgxOTE5NiwiZGF0YWJhc2VOYW1lIjoiVGVzdFRva2VuQXV0aCIsInN1YiI6ImVtcnVsQGVtcnVsLmNvbSIsImF1ZCI6Ik9yaWVudERiIiwiaXNzIjoiT3JpZW50RGIiLCJqdGkiOiI4N2YxZjIzNy1jMjhmLTRjMjctOWM0Yy05MDQ1MjgyMjgwYTEiLCJpYXQiOjE0MTA4MTkxODZ9.GD2r5Hf1hXSE_0R4BOMjfeZ8y_kBS2ysZvngAPTjjN8", sharedSecret);
+        IJsonWebToken token = jwt.parseToken("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUmlkIjoiIzU6MyIsImV4cCI6MTQxMDgxOTE5NiwiZGF0YWJhc2VOYW1lIjoiVGVzdFRva2VuQXV0aCIsInN1YiI6ImVtcnVsQGVtcnVsLmNvbSIsImF1ZCI6Ik9yaWVudERiIiwiaXNzIjoiT3JpZW50RGIiLCJqdGkiOiI4N2YxZjIzNy1jMjhmLTRjMjctOWM0Yy05MDQ1MjgyMjgwYTEiLCJpYXQiOjE0MTA4MTkxODZ9.GD2r5Hf1hXSE_0R4BOMjfeZ8y_kBS2ysZvngAPTjjN8");
     }
 
 
@@ -59,6 +55,6 @@ public class JwtTest
 
         signedJWT.verify(verifier);
         signedJWT.getHeader();
-        ReadOnlyJWTClaimsSet claims = signedJWT.getJWTClaimsSet();
+        JWTClaimsSet claims = signedJWT.getJWTClaimsSet();
     }
 }

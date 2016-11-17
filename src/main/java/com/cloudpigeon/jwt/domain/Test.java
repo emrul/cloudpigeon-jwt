@@ -14,12 +14,13 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Test {
 
-    public static void main(String[] args) throws InvalidKeyException, NoSuchAlgorithmException, IOException {
+    public static void main(String[] args) throws InvalidKeyException, NoSuchAlgorithmException, IOException, CloneNotSupportedException, Exception {
         byte[] secret = "tokenkey".getBytes();
         JWT jwt = JWT.getInstance();
-        // JWT.parseToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyMzQ1Njc4OTAsIm5hbWUiOiJKb2huIERvZSIsImFkbWluIjp0cnVlfQ.eoaDVGTClRdfxUZXiPs3f8FmJDkDE_VCQFXqKxpLsts");
-        IJsonWebToken token = jwt.parseToken("eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyUmlkIjoiIzU6MyIsImV4cCI6MTQxMDgxOTE5NiwiZGF0YWJhc2VOYW1lIjoiVGVzdFRva2VuQXV0aCIsInN1YiI6ImVtcnVsQGVtcnVsLmNvbSIsImF1ZCI6Ik9yaWVudERiIiwiaXNzIjoiT3JpZW50RGIiLCJqdGkiOiI4N2YxZjIzNy1jMjhmLTRjMjctOWM0Yy05MDQ1MjgyMjgwYTEiLCJpYXQiOjE0MTA4MTkxODZ9.GD2r5Hf1hXSE_0R4BOMjfeZ8y_kBS2ysZvngAPTjjN8"
-        , secret);
+        IJsonWebToken token = jwt.parseToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEyMzQ1Njc4OTAsIm5hbWUiOiJKb2huIERvZSIsImFkbWluIjp0cnVlfQ.l0zhNDK42j-jH4EoSJMte5j4bpBYaQxnRfW0GRT4KjY");
+        //IJsonWebToken token = jwt.parseToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyUmlkIjoiIzU6MyIsImV4cCI6MTQxMDgxOTE5NiwiZGF0YWJhc2VOYW1lIjoiVGVzdFRva2VuQXV0aCIsInN1YiI6ImVtcnVsQGVtcnVsLmNvbSIsImF1ZCI6Ik9yaWVudERiIiwiaXNzIjoiT3JpZW50RGIiLCJqdGkiOiI4N2YxZjIzNy1jMjhmLTRjMjctOWM0Yy05MDQ1MjgyMjgwYTEiLCJpYXQiOjE0MTA4MTkxODZ9.GD2r5Hf1hXSE_0R4BOMjfeZ8y_kBS2ysZvngAPTjjN8", secret);
+
+        System.out.println(jwt.signAndGetToken(token));
         return;
     }
 }

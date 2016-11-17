@@ -2,34 +2,26 @@ package com.cloudpigeon.jwt.domain.impl;
 
 import com.cloudpigeon.jwt.domain.IJwtPayload;
 
-import java.util.Date;
-
 /**
  * Created by emrul on 28/09/2014.
+ *
+ * If extending this class then check http://www.iana.org/assignments/jwt/jwt.xhtml to see
+ * if additional claims are already registered with IANA.
  *
  * @author Emrul Islam <emrul@emrul.com>
  *         Copyright 2014 Vivid Inventive Ltd
  */
 public class JwtPayload implements IJwtPayload {
-    /*extends HashMap<String,Object> {
-    public static final String PROPERTY_ISSUER = "iss";
-    public static final String PROPERTY_ISSUED_AT = "iat";
-    public static final String PROPERTY_EXPIRY = "exp";
-    public static final String PROPERTY_NOT_BEFORE = "nbf";*/
-
     public String iss;
     public String sub;
     public String aud;
     public String jti;
-    public Date exp;
-    public Date iat;
-    public Date nbf;
+    public Long exp;
+    public Long iat;
+    public Long nbf;
 
     @Override
     public String getIssuer() {
-        //
-        //Maps.fromMap()
-        // JsonFactory. .fromJson("", JWTClaim.class);
         return iss;
     }
 
@@ -39,32 +31,32 @@ public class JwtPayload implements IJwtPayload {
     }
 
     @Override
-    public Date getExpiry() {
+    public Long getExpiry() {
         return exp;
     }
 
     @Override
-    public void setExpiry(Date exp) {
+    public void setExpiry(Long exp) {
         this.exp = exp;
     }
 
     @Override
-    public Date getIssuedAt() {
+    public Long getIssuedAt() {
         return iat;
     }
 
     @Override
-    public void setIssuedAt(Date iat) {
+    public void setIssuedAt(Long iat) {
         this.iat = iat;
     }
 
     @Override
-    public Date getNotBefore() {
+    public Long getNotBefore() {
         return nbf;
     }
 
     @Override
-    public void setNotBefore(Date nbf) {
+    public void setNotBefore(Long nbf) {
         this.nbf = nbf;
     }
 

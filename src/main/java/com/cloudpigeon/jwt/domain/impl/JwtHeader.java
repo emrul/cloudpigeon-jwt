@@ -16,9 +16,10 @@ public class JwtHeader implements IJwtHeader { /*extends HashMap<String,Object> 
     private String typ;
     private String alg;
     private String kid;
+    private String cty;
 
     @Override
-    public String getAlggorithm() {
+    public String getAlgorithm() {
         return alg;
     }
 
@@ -47,29 +48,13 @@ public class JwtHeader implements IJwtHeader { /*extends HashMap<String,Object> 
         this.kid = kid;
     }
 
-    /*
-    public Object get(String property) {
-        switch (property) {
-            case JWTHeader.PROPERTY_TYPE:
-                return typ;
-            case JWTHeader.PROPERTY_ALGORITHM:
-                return alg;
-            default:
-                return super.get(property);
-        }
+    @Override
+    public String getContentType() {
+        return this.cty;
     }
 
     @Override
-    public Object put(String property, Object value) {
-        switch (property) {
-            case JWTHeader.PROPERTY_TYPE:
-                typ = value;
-            case JWTHeader.PROPERTY_ALGORITHM:
-                alg = value;
-            default:
-                super.put(property, value);
-        }
-        return null;
+    public void setContentType(String cty) {
+        this.cty = cty;
     }
-    */
 }

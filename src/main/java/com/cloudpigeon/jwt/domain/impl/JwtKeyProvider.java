@@ -30,7 +30,11 @@ public class JwtKeyProvider implements IJwtKeyProvider {
     }
 
     @Override
-    public Key getKey(IJwtHeader header) {
+    public Key getVerificationKey(IJwtHeader header) {
+        return secret_key;
+    }
+    @Override
+    public Key getSigningKey(IJwtHeader header) {
         return secret_key;
     }
 }

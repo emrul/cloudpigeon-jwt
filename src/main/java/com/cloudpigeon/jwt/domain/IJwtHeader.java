@@ -11,10 +11,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public interface IJwtHeader {
 
     @JsonProperty(value="alg")
-    public String getAlggorithm();
+    public String getAlgorithm();
 
     @JsonProperty(value="alg")
     public void setAlgorithm(String alg);
+
+    @JsonProperty(value="cty")
+    public String getContentType();
+
+    @JsonProperty(value="cty")
+    public void setContentType(String cty);
+
 
     @JsonProperty(value="typ")
     public String getType();

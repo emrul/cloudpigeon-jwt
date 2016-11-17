@@ -10,5 +10,6 @@ import java.security.Key;
  */
 public interface IJwtKeyProvider {
 
-    public Key getKey(IJwtHeader header);
+    Key getVerificationKey(IJwtHeader header);
+    Key getSigningKey(IJwtHeader header);
 }

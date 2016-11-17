@@ -1,7 +1,6 @@
 package com.cloudpigeon.commons.test;
 
 import com.cloudpigeon.commons.util.Base64;
-import com.cloudpigeon.commons.util.Base64Groovy;
 import junit.framework.TestCase;
 import org.openjdk.jmh.annotations.*;
 
@@ -19,12 +18,16 @@ import java.util.Random;
 public class Base64SpeedTest extends TestCase
 {
 	private byte[] randomData;
+    private java.util.Base64.Encoder java8Encoder;
+    private java.util.Base64.Decoder java8Decoder;
 
     @Setup
 	public void setUp() throws Exception
 	{
 		randomData = new byte[5000];
 		new Random().nextBytes(randomData);
+        java8Encoder = java.util.Base64.getEncoder();
+        java8Decoder = java.util.Base64.getDecoder();
 	}
 
     @TearDown
@@ -39,16 +42,6 @@ public class Base64SpeedTest extends TestCase
 
         String enc;
         byte[] dec;
-
-        n = System.nanoTime();
-        for (int i = 0; i < 1000; i++) {
-              enc = Base64Groovy.encode(randomData);
-              dec = Base64Groovy.decode(enc);
-            //byte[] enc = Base64.encodeToByte(randomData, true);
-            //byte[] dec = Base64.decode(enc);
-        }
-
-        System.out.println("Groovy Timed: " + ((System.nanoTime() - n) / 1000000f));
 
         java.util.Base64.Encoder encoder = java.util.Base64.getEncoder();
         java.util.Base64.Decoder decoder = java.util.Base64.getDecoder();
@@ -85,21 +78,21 @@ public class Base64SpeedTest extends TestCase
 	}
 
     @Benchmark
-    public void measureGroovyBase64() {
-        String enc;
-        byte[] dec;
-
-        enc = Base64Groovy.encode(randomData);
-        dec = Base64Groovy.decode(enc);
-    }
-
-
-    @Benchmark
     public void measureMig() {
         String enc;
         byte[] dec;
 
         enc = Base64.encodeToString(randomData, true);
         dec = Base64.decode(enc);
+    }
+
+
+    @Benchmark
+    public void measureJava8() {
+        String enc;
+        byte[] dec;
+
+        enc = java8Encoder.encodeToString(randomData);
+        dec = java8Decoder.decode(enc);
     }
 }

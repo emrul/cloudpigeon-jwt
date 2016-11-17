@@ -3,8 +3,6 @@ package com.cloudpigeon.jwt.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
-
 /**
  * Created by emrul on 28/09/2014.
  *
@@ -20,22 +18,22 @@ public interface IJwtPayload {
     public void setIssuer(String iss);
 
     @JsonProperty(value="exp")
-    public Date getExpiry();
+    public Long getExpiry();
 
     @JsonProperty(value="exp")
-    public void setExpiry(Date exp);
+    public void setExpiry(Long exp);
 
     @JsonProperty(value="iat")
-    public Date getIssuedAt();
+    public Long getIssuedAt();
 
     @JsonProperty(value="iat")
-    public void setIssuedAt(Date iat);
+    public void setIssuedAt(Long iat);
 
     @JsonProperty(value="nbf")
-    public Date getNotBefore();
+    public Long getNotBefore();
 
     @JsonProperty(value="nbf")
-    public void setNotBefore(Date nbf);
+    public void setNotBefore(Long nbf);
 
     @JsonProperty(value="sub")
     public String getSubject();

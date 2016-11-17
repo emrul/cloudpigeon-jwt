@@ -8,7 +8,7 @@ package com.cloudpigeon.jwt.domain;
  */
 public interface IJsonWebToken {
 
-    public IJwtHeader getHeader();
+    IJwtHeader getHeader();
 
-    public IJwtPayload getPayload();
+    IJwtPayload getPayload();
 }
